@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOTR</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="shortcut icon" href="/one-ring-icon.png" type="image/x-icon">
+</head>
+<body>
+  
+
+  <div id="logo"><img src="img/one-ring.png" alt="lotr-logo" draggable="false"></div>
+
+  
+
+  <div id="characters">
+    <div class="character" id="character1">
+      <a href="pages/frodo.html"><img src="img/frodo.jpg" alt="Frodo" draggable="false"></a>
+      <div class="character-name">Frodo Baggins</div>
+    </div>
+    <div class="character" id="character2">
+      <img src="img/sam.jpeg" alt="Sam" draggable="false">
+      <div class="character-name">Samwise Gamgee</div>
+    </div>
+    <div class="character" id="character3">
+      <img src="img/mariadoc.jpeg" alt="Meriadoc" draggable="false">
+      <div class="character-name">Meriadoc Brandybuck</div>
+    </div>
+    <div class="character" id="character4">
+      <img src="img/pippin.jpg" alt="Pippin" draggable="false">
+      <div class="character-name">Peregrin Took</div>
+    </div>
+    <div class="character" id="character5" style="display: none;">
+      <img src="img/gandalf.jpeg" alt="Gandalf" draggable="false">
+      <div class="character-name">Gandalf The Grey</div>
+    </div>
+    <div class="character" id="character6" style="display: none;">
+      <img src="img/aragorn.jpg" alt="Aragorn" draggable="false">
+      <div class="character-name">Aragorn II</div>
+    </div>
+    <div class="character" id="character7" style="display: none;">
+      <img src="img/gimli.jpeg" alt="Gimli" draggable="false">
+      <div class="character-name">Gimli</div>
+    </div>
+    <div class="character" id="character8" style="display: none;">
+      <img src="img/legolas.jpg" alt="Legolas" draggable="false">
+      <div class="character-name">Legolas</div>
+    </div>
+  </div>
+
+  <div id="arrow"><img src="img/arrow.png" alt="arrow1" draggable="false"></div> 
+  <div id="arrow1"><img src="img/arrow1.png" alt="arrow" draggable="false"></div> 
+
+  <div id="map-text">MIDDLE EARTH</div>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script>
+    var map = L.map('map', {
+    crs: L.CRS.Simple,
+    minZoom: 1,
+    maxZoom: 4,
+    zoomControl: true,
+  });
+
+  var imageUrl = 'img/middle-earth.jpeg',
+      imageBounds = [[0, 0], [1000, 1000]];
+
+  L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+  map.setView([500, 500], 2); 
+
+  map.setMaxBounds(imageBounds);
+
+  var marker1 = L.marker([755, 520]).addTo(map);
+  marker1.bindPopup("This is where it all begun!");
+
+  marker1.on('mouseover', function() {
+    this.openPopup();  
+  });
+
+  marker1.on('mouseout', function() {
+    this.closePopup();  
+  });
+
+  window.onload = function() {
+    map.setView(marker1.getLatLng(), 2); 
+  };
+</script>
+
+
+<script src="/main.js"></script>
+</body>
+</html>
